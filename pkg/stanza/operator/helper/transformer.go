@@ -99,7 +99,7 @@ func (t *TransformerOperator) HandleEntryError(ctx context.Context, entry *entry
 	if t.OnError == SendOnErrorQuiet || t.OnError == DropOnErrorQuiet {
 		t.Debugw("Failed to process entry", zap.Any("error", err), zap.Any("action", t.OnError))
 	} else {
-		t.Errorw("Failed to process entry", zap.Any("error", err), zap.Any("action", t.OnError))
+		t.Errorw("Failed to process entry", zap.Any("entry", entry), zap.Any("error", err), zap.Any("action", t.OnError))
 	}
 	if t.OnError == SendOnError || t.OnError == SendOnErrorQuiet {
 		t.Write(ctx, entry)
